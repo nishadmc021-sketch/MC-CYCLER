@@ -7,24 +7,35 @@
 
 <style>
 body{margin:0;font-family:Arial;background:#f2f2f2}
+.hidden{display:none}
+
+/* HEADER */
 header{
   background:#000;color:#fff;
   padding:15px 25px;
-  display:flex;justify-content:space-between;align-items:center
+  display:flex;
+  justify-content:space-between;
+  align-items:center
 }
 header h1{color:#f5c400;margin:0}
+.profile{cursor:pointer;font-size:22px}
 
+/* HERO */
 .hero{
   background:url("https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg") center/cover;
   height:320px;
-  display:flex;align-items:center;justify-content:center;
-  text-align:center;color:#fff
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff
 }
 .hero h2{
   font-size:40px;
   text-shadow:2px 2px 8px #000
 }
 
+/* FILTERS */
 .filters{
   background:#fff;
   padding:12px;
@@ -33,15 +44,15 @@ header h1{color:#f5c400;margin:0}
   justify-content:center;
   flex-wrap:wrap
 }
-select{padding:8px;font-size:14px}
+select{padding:8px}
 
+/* PRODUCTS */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
   gap:18px;
   padding:18px
 }
-
 .card{
   background:#fff;
   border-radius:10px;
@@ -55,7 +66,6 @@ select{padding:8px;font-size:14px}
 }
 .card .info{padding:12px}
 .price{font-weight:bold;margin:6px 0}
-
 button{
   width:100%;
   padding:8px;
@@ -70,6 +80,7 @@ button:hover{
   color:#000
 }
 
+/* CART */
 .cart{
   position:fixed;
   bottom:15px;
@@ -80,19 +91,25 @@ button:hover{
   border-radius:25px
 }
 
+/* ADMIN PANEL */
 .admin{
+  position:fixed;
+  top:70px;
+  right:20px;
+  width:260px;
   background:#fff;
-  margin:20px;
-  padding:20px;
-  border-radius:10px
+  padding:15px;
+  border-radius:10px;
+  box-shadow:0 6px 18px rgba(0,0,0,.3);
+  z-index:999
 }
 .admin input,.admin select{
   width:100%;
   padding:8px;
-  margin-bottom:10px
+  margin-bottom:8px
 }
-.hidden{display:none}
 
+/* FOOTER */
 footer{
   background:#000;
   color:#ccc;
@@ -105,11 +122,13 @@ footer{
 
 <body>
 
+<!-- HEADER -->
 <header>
   <h1>MC CyCler</h1>
-  <span>Ride Smart 🚴</span>
+  <div class="profile" onclick="toggleAdmin()">👤</div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
   <h2>Choose Your Perfect Ride</h2>
 </section>
@@ -136,10 +155,10 @@ footer{
 
 <div class="cart">🛒 Cart: <span id="count">0</span></div>
 
-<!-- ADMIN PANEL -->
-<div class="admin">
+<!-- ADMIN (HIDDEN IN PROFILE) -->
+<div class="admin hidden" id="adminBox">
   <h3>Admin Login</h3>
-  <input id="pass" type="password" placeholder="Enter Admin Password">
+  <input id="pass" type="password" placeholder="Password">
   <button onclick="login()">Login</button>
 
   <div id="adminPanel" class="hidden">
@@ -157,7 +176,7 @@ footer{
 </div>
 
 <footer>
-  UPI • Cash on Delivery • WhatsApp Order<br>
+  WhatsApp Order • UPI • COD<br>
   📍 Malappuram | 📞 7907609416
 </footer>
 
@@ -198,11 +217,15 @@ function order(name,price){
   window.open(`https://wa.me/917907609416?text=${msg}`);
 }
 
+function toggleAdmin(){
+  adminBox.classList.toggle("hidden");
+}
+
 function login(){
   if(pass.value==="admin123"){
     adminPanel.classList.remove("hidden");
   }else{
-    alert("Wrong Password");
+    alert("Wrong password");
   }
 }
 
