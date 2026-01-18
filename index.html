@@ -3,172 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MC CYCLER | Premium Bicycles</title>
+    <title>MC CyCler | Premium Bicycle E-Store</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --brand-gold: #D4AF37; 
+            --brand-gold: #f5c400;
             --brand-dark: #0f0f0f;
+            --brand-accent: #E91E63;
+            --text-gray: #666;
             --white: #ffffff;
-            --accent-green: #27ae60;
-            --insta-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --bg-light: #f4f4f4;
+            --success: #27ae60;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: #fff; color: var(--brand-dark); }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-light); color: var(--brand-dark); line-height: 1.6; overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
 
-        /* --- HEADER --- */
-        header { 
-            background: white;
-            padding: 10px 8%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            border-bottom: 1px solid #eee;
-        }
-
-        /* --- LOGO INTEGRATION --- */
-        .logo-box { display: flex; align-items: center; text-decoration: none; color: black; }
-        .logo-box img { 
-            height: 65px; /* Size adjusted for the crown detail */
-            width: auto;
-            margin-right: 12px;
-        }
-        .logo-box span { 
-            font-size: 22px; 
-            font-weight: 900; 
-            letter-spacing: -0.5px; 
-            text-transform: uppercase;
-        }
+        /* --- TOP ANNOUNCEMENT --- */
+        .top-bar { background: var(--brand-gold); color: #000; text-align: center; padding: 8px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
         /* --- NAVIGATION --- */
+        header { background: var(--brand-dark); color: var(--white); padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .logo { font-size: 24px; font-weight: 900; color: var(--brand-gold); text-transform: uppercase; text-decoration: none; letter-spacing: -1px; }
         nav ul { list-style: none; display: flex; gap: 25px; }
-        nav a { color: var(--brand-dark); text-decoration: none; font-weight: 600; font-size: 12px; text-transform: uppercase; }
+        nav a { color: var(--white); text-decoration: none; font-weight: 500; font-size: 14px; transition: 0.3s; opacity: 0.8; }
+        nav a:hover { color: var(--brand-gold); opacity: 1; }
+        .nav-icons { display: flex; gap: 20px; align-items: center; }
+        .cart-trigger { position: relative; cursor: pointer; font-size: 18px; }
+        .cart-badge { position: absolute; top: -10px; right: -12px; background: var(--brand-accent); color: white; font-size: 10px; padding: 2px 6px; border-radius: 50%; font-weight: bold; }
 
         /* --- HERO --- */
-        .hero { 
-            height: 65vh; 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/248547/pexels-photo-248547.jpeg') center/cover; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
-        .hero h1 { font-size: clamp(35px, 7vw, 75px); font-weight: 900; }
+        .hero { height: 70vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg') center/cover; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); }
+        .hero-content h1 { font-size: clamp(35px, 6vw, 70px); line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; font-weight: 900; }
+        .cta-btn { background: var(--brand-gold); color: #000; padding: 16px 35px; text-decoration: none; font-weight: 800; border-radius: 4px; display: inline-block; transition: 0.3s; text-transform: uppercase; font-size: 14px; }
+        .cta-btn:hover { background: var(--white); transform: translateY(-3px); }
 
-        /* --- INSTAGRAM SECTION --- */
-        .insta-banner { 
-            padding: 60px 8%; 
-            text-align: center; 
-            background: #fafafa;
-            border-top: 1px solid #eee;
-        }
-        .insta-link { 
-            font-size: 28px; 
-            font-weight: 900; 
-            color: var(--brand-dark); 
-            text-decoration: none;
-            display: block;
-            margin: 15px 0;
-        }
-        .insta-btn { 
-            display: inline-block;
-            background: var(--insta-gradient);
-            color: white;
-            padding: 14px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: 0.3s;
-        }
+        /* --- TRUST BADGES --- */
+        .trust-badges { display: flex; justify-content: center; gap: 30px; padding: 40px 8%; background: var(--white); border-bottom: 1px solid #eee; }
+        .badge-item { text-align: center; flex: 1; min-width: 120px; }
+        .badge-item i { font-size: 24px; color: var(--brand-gold); margin-bottom: 8px; }
+        .badge-item p { font-size: 12px; font-weight: 700; color: var(--text-gray); text-transform: uppercase; }
 
-        /* --- FLOATING ACTIONS --- */
-        .floating-social {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 2000;
-        }
-        .social-circle {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            text-decoration: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: 0.3s;
-        }
-        .social-circle.insta { background: var(--insta-gradient); }
-        .social-circle.wa { background: #25d366; }
-        .social-circle:hover { transform: scale(1.1); }
+        /* --- SHOP SECTION --- */
+        .section-padding { padding: 60px 8%; }
+        .section-header { margin-bottom: 40px; border-left: 4px solid var(--brand-gold); padding-left: 15px; }
+        .section-header h2 { font-size: 28px; text-transform: uppercase; letter-spacing: 1px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .product-card { background: var(--white); border-radius: 8px; overflow: hidden; transition: 0.4s; border: 1px solid #eee; position: relative; }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .product-image { width: 100%; height: 280px; object-fit: cover; transition: 0.5s; }
+        .product-details { padding: 20px; }
+        .product-price { font-size: 20px; font-weight: 800; color: var(--brand-dark); margin: 5px 0 15px 0; }
+        .card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .btn-card { padding: 12px; border: none; font-weight: 700; cursor: pointer; font-size: 11px; border-radius: 4px; text-transform: uppercase; }
+        .btn-cart { background: #f0f0f0; color: #333; }
+        .btn-buy { background: var(--brand-dark); color: white; }
+        .btn-buy:hover { background: var(--brand-gold); color: #000; }
 
-        footer { background: var(--brand-dark); color: #777; padding: 40px 8%; text-align: center; font-size: 12px; }
-        .footer-logo { height: 40px; filter: brightness(0) invert(1); margin-bottom: 20px; opacity: 0.5; }
+        /* --- CART DRAWER --- */
+        #cart-drawer { position: fixed; top: 0; right: -100%; width: 100%; max-width: 380px; height: 100%; background: white; z-index: 2000; transition: 0.4s; box-shadow: -5px 0 20px rgba(0,0,0,0.2); display: flex; flex-direction: column; }
+        #cart-drawer.open { right: 0; }
+        .cart-header { padding: 20px; background: var(--brand-dark); color: white; display: flex; justify-content: space-between; align-items: center; }
+        .cart-body { flex: 1; overflow-y: auto; padding: 20px; }
+        .cart-footer { padding: 20px; border-top: 1px solid #eee; }
 
+        /* --- WHATSAPP FLOATING --- */
+        .whatsapp-float { position: fixed; bottom: 30px; left: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 1000; text-decoration: none; transition: 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.1); background: #128c7e; }
+
+        /* --- CHECKOUT MODAL --- */
+        #checkout-modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:3000; justify-content:center; align-items:center; }
+        .modal-content { background:white; padding:30px; border-radius:10px; width:90%; max-width:450px; }
+        .modal-content input, .modal-content select { width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:5px; }
+
+        footer { background: var(--brand-dark); color: #888; padding: 60px 8% 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+        .footer-col h4 { color: var(--brand-gold); margin-bottom: 15px; }
+        
         @media (max-width: 768px) {
             nav { display: none; }
+            .hero-content h1 { font-size: 40px; }
+            .trust-badges { flex-wrap: wrap; gap: 15px; }
+            .badge-item { min-width: 45%; }
         }
     </style>
 </head>
 <body>
 
+<div class="top-bar">🚚 Fast Delivery in Malappuram - Quality You Can Trust</div>
+
 <header>
-    <a href="#" class="logo-box">
-        <img src="Badan-Ser-Bg-Removed.png" alt="MC CYCLER Logo">
-        <span>MC CYCLER</span>
-    </a>
+    <a href="#" class="logo">MC CyCler</a>
     <nav>
         <ul>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">Kerala Delivery</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#shop">Mountain</a></li>
+            <li><a href="#shop">City</a></li>
+            <li><a href="#shop">Kids</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    <div style="font-size: 18px; cursor: pointer;">
-        <i class="fas fa-shopping-bag"></i>
+    <div class="nav-icons">
+        <div class="cart-trigger" onclick="toggleCart()">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-badge" id="cart-count">0</span>
+        </div>
     </div>
 </header>
 
 <section class="hero">
-    <div>
-        <p style="letter-spacing: 4px; font-weight: 700; margin-bottom: 10px;">ROYAL QUALITY</p>
-        <h1>BORN TO LEAD.</h1>
+    <div class="hero-content">
+        <h1>Engineered for<br><span style="color:var(--brand-gold)">Malappuram</span></h1>
+        <a href="#shop" class="cta-btn">View Inventory</a>
     </div>
 </section>
 
-<section class="insta-banner">
-    <i class="fab fa-instagram" style="font-size: 40px; color: #cc2366;"></i>
-    <p style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #888; margin-top: 10px;">JOIN THE MOVEMENT</p>
-    <a href="https://www.instagram.com/mc.ofcia/" target="_blank" class="insta-link">@mc.ofcia</a>
-    <p style="max-width: 500px; margin: 0 auto 25px;">Follow our journey, view the latest arrivals, and join the elite cycling community in Kerala and beyond.</p>
-    <a href="https://www.instagram.com/mc.ofcia/" target="_blank" class="insta-btn">FOLLOW US</a>
-</section>
-
-<div class="floating-social">
-    <a href="https://wa.me/917907609416" class="social-circle wa" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    <a href="https://www.instagram.com/mc.ofcia/" class="social-circle insta" target="_blank">
-        <i class="fab fa-instagram"></i>
-    </a>
+<div class="trust-badges">
+    <div class="badge-item"><i class="fas fa-truck"></i><p>Same Day Shipping</p></div>
+    <div class="badge-item"><i class="fas fa-tools"></i><p>Pro Tuned</p></div>
+    <div class="badge-item"><i class="fas fa-check-circle"></i><p>Original Parts</p></div>
 </div>
 
-<footer>
-    <img src="Badan-Ser-Bg-Removed.png" class="footer-logo" alt="Logo">
-    <p>© 2026 MC CYCLER INTERNATIONAL. ALL RIGHTS RESERVED.</p>
-    <p style="margin-top: 10px; color: var(--brand-gold);">FREE DELIVERY ACROSS KERALA</p>
+<section class="section-padding" id="shop">
+    <div class="section-header">
+        <p style="color:var(--brand-accent); font-weight:700; font-size:12px;">NEW ARRIVALS</p>
+        <h2>The 2026 Fleet</h2>
+    </div>
+
+    <div class="product-grid">
+        <div class="product-card">
+            <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg" class="product-image">
+            <div class="product-details">
+                <p style="color:var(--text-gray); font-size:11px; font-weight:bold;">MOUNTAIN</p>
+                <h3 class="product-name">Summit Slayer 2.0</h3>
+                <p class="product-price">₹18,500</p>
+                <div class="card-actions">
+                    <button class="btn-card btn-cart" onclick="addToCart('Summit Slayer', 18500)">+ Cart</button>
+                    <button class="btn-card btn-buy" onclick="openCheckout('Summit Slayer', 18500)">Buy Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg" class="product-image">
+            <div class="product-details">
+                <p style="color:var(--text-gray); font-size:11px; font-weight:bold;">HYBRID</p>
+                <h3 class="product-name">Urban Stealth Pro</h3>
+                <p class="product-price">₹12,200</p>
+                <div class="card-actions">
+                    <button class="btn-card btn-cart" onclick="addToCart('Urban Stealth', 12200)">+ Cart</button>
+                    <button class="btn-card btn-buy" onclick="openCheckout('Urban Stealth', 12200)">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="cart-drawer">
+    <div class="cart-header">
+        <h3>Your Cart</h3>
+        <i class="fas fa-times" style="cursor:pointer" onclick="toggleCart()"></i>
+    </div>
+    <div class="cart-body" id="cart-items-list"></div>
+    <div class="cart-footer">
+        <div style="display:flex; justify-content:space-between; font-weight:bold; margin-bottom:15px; font-size:18px;">
+            <span>Total</span>
+            <span>₹<span id="subtotal">0</span></span>
+        </div>
+        <button class="btn-card btn-buy" style="width:100%; font-size:14px" onclick="openCheckout('Cart Order', document.getElementById('subtotal').innerText)">Checkout Now</button>
+    </div>
+</div>
+
+<div id="checkout-modal">
+    <div class="modal-content">
+        <h3>Complete Your Order</h3>
+        <p id="checkout-summary" style="margin-top:10px; font-weight:bold; color:var(--brand-accent)"></p>
+        <form onsubmit="confirmOrder(event)">
+            <input type="text" placeholder="Your Name" required>
+            <input type="tel" placeholder="Mobile Number" required>
+            <input type="text" placeholder="Address in Malappuram" required>
+            <select required>
+                <option value="cod">Cash on Delivery</option>
+                <option value="upi">UPI Payment</option>
+            </select>
+            <button type="submit" class="btn-card btn-buy" style="width:100%; margin-top:10px;">Place Order</button>
+            <button type="button" onclick="closeModal()" style="width:100%; background:none; border:none; margin-top:10px; cursor:pointer; color:var(--text-gray)">Cancel</button>
+        </form>
+    </div>
+</div>
+
+<a href="https://wa.me/917907609416?text=Hi MC CyCler, I am interested in your bikes!" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<footer id="contact">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>MC CyCler</h4>
+            <p>Premium bicycle sales & service in Malappuram. Engineered for performance.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Location</h4>
+            <p>📍 Iqbal Nagar, Thirunavaya Road</p>
+            <p>Malappuram, Kerala</p>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>📞 +91 79076 09416</p>
+            <p>📸 @mc_cycler</p>
+        </div>
+    </div>
+    <div style="text-align:center; margin-top:40px; font-size:12px; border-top:1px solid #222; padding-top:20px;">
+        © 2026 MC CyCler. Built for the Road Ahead.
+    </div>
 </footer>
 
+<script>
+    let cart = [];
+
+    function toggleCart() {
+        document.getElementById('cart-drawer').classList.toggle('open');
+    }
+
+    function addToCart(name, price) {
+        cart.push({name, price});
+        updateCartUI();
+        toggleCart();
+    }
+
+    function updateCartUI() {
+        const list = document.getElementById('cart-items-list');
+        const count = document.getElementById('cart-count');
+        const subtotal = document.getElementById('subtotal');
+        list.innerHTML = '';
+        let total = 0;
+        cart.forEach((item, i) => {
+            total += item.price;
+            list.innerHTML += `<div style="display:flex; justify-content:space-between; margin-bottom:15px; padding-bottom:10px; border-bottom:1px solid #eee">
+                <div><p style="font-weight:bold; font-size:14px">${item.name}</p><p style="color:var(--text-gray); font-size:12px">₹${item.price}</p></div>
+                <i class="fas fa-trash" style="cursor:pointer; color:#ccc" onclick="remove(${i})"></i>
+            </div>`;
+        });
+        count.innerText = cart.length;
+        subtotal.innerText = total.toLocaleString();
+    }
+
+    function remove(i) { cart.splice(i, 1); updateCartUI(); }
+
+    function openCheckout(name, price) {
+        if(price == 0) return alert("Your cart is empty!");
+        document.getElementById('checkout-summary').innerText = `${name} - Total: ₹${price}`;
+        document.getElementById('checkout-modal').style.display = 'flex';
+    }
+
+    function closeModal() { document.getElementById('checkout-modal').style.display = 'none'; }
+
+    function confirmOrder(e) {
+        e.preventDefault();
+        alert("🎉 Success! MC CyCler has received your order.\nWe will call you shortly to confirm delivery.");
+        cart = [];
+        updateCartUI();
+        closeModal();
+        if(document.getElementById('cart-drawer').classList.contains('open')) toggleCart();
+    }
+</script>
 </body>
 </html>
