@@ -3,36 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MC CYCLER | Premium Bicycle Engineering</title>
+    <title>MC CYCLER | Premium Bicycles</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            /* Matched to your logo's gold color */
             --brand-gold: #D4AF37; 
             --brand-dark: #0f0f0f;
             --white: #ffffff;
             --accent-green: #27ae60;
+            --insta-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: #fff; color: var(--brand-dark); overflow-x: hidden; }
+        body { background-color: #fff; color: var(--brand-dark); }
 
-        /* --- ANNOUNCEMENT BAR --- */
-        .top-bar { 
-            background: var(--brand-dark); 
-            color: var(--white); 
-            text-align: center; 
-            padding: 12px; 
-            font-size: 11px; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            letter-spacing: 2px;
-        }
-        .highlight-text { color: var(--brand-gold); }
-
-        /* --- HEADER WITH YOUR LOGO --- */
+        /* --- HEADER --- */
         header { 
-            background: rgba(255,255,255,0.98);
+            background: white;
             padding: 10px 8%; 
             display: flex; 
             justify-content: space-between; 
@@ -41,119 +28,147 @@
             top: 0; 
             z-index: 1000; 
             border-bottom: 1px solid #eee;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        
-        .logo-container { display: flex; align-items: center; text-decoration: none; }
-        /* Replace 'Badan-Ser-Bg-Removed.png' with your actual hosted link later */
-        .logo-img { height: 60px; width: auto; margin-right: 10px; }
-        .logo-text { font-size: 22px; font-weight: 900; color: var(--brand-dark); letter-spacing: -1px; }
 
-        nav ul { list-style: none; display: flex; gap: 30px; }
+        /* --- LOGO INTEGRATION --- */
+        .logo-box { display: flex; align-items: center; text-decoration: none; color: black; }
+        .logo-box img { 
+            height: 65px; /* Size adjusted for the crown detail */
+            width: auto;
+            margin-right: 12px;
+        }
+        .logo-box span { 
+            font-size: 22px; 
+            font-weight: 900; 
+            letter-spacing: -0.5px; 
+            text-transform: uppercase;
+        }
+
+        /* --- NAVIGATION --- */
+        nav ul { list-style: none; display: flex; gap: 25px; }
         nav a { color: var(--brand-dark); text-decoration: none; font-weight: 600; font-size: 12px; text-transform: uppercase; }
 
         /* --- HERO --- */
         .hero { 
-            height: 75vh; 
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/248547/pexels-photo-248547.jpeg?auto=compress&cs=tinysrgb&w=1260') center/cover; 
+            height: 65vh; 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/248547/pexels-photo-248547.jpeg') center/cover; 
             display: flex; 
             align-items: center; 
             justify-content: center;
             text-align: center;
             color: white;
         }
-        .hero h1 { font-size: clamp(40px, 8vw, 80px); font-weight: 900; text-transform: uppercase; }
+        .hero h1 { font-size: clamp(35px, 7vw, 75px); font-weight: 900; }
 
-        /* --- PRODUCT STYLING --- */
-        .shop-container { padding: 80px 8%; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .product-card { border: 1px solid #eee; transition: 0.4s; position: relative; }
-        .product-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-        .product-image { width: 100%; height: 350px; object-fit: cover; }
-        .delivery-badge { position: absolute; top: 15px; left: 15px; background: var(--accent-green); color: white; padding: 5px 12px; font-size: 10px; font-weight: 800; border-radius: 4px; }
+        /* --- INSTAGRAM SECTION --- */
+        .insta-banner { 
+            padding: 60px 8%; 
+            text-align: center; 
+            background: #fafafa;
+            border-top: 1px solid #eee;
+        }
+        .insta-link { 
+            font-size: 28px; 
+            font-weight: 900; 
+            color: var(--brand-dark); 
+            text-decoration: none;
+            display: block;
+            margin: 15px 0;
+        }
+        .insta-btn { 
+            display: inline-block;
+            background: var(--insta-gradient);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+        }
 
-        .btn { padding: 15px 25px; border: none; cursor: pointer; font-weight: 800; text-transform: uppercase; font-size: 12px; transition: 0.3s; width: 100%; }
-        .btn-gold { background: var(--brand-gold); color: white; }
-        .btn-gold:hover { background: var(--brand-dark); }
+        /* --- FLOATING ACTIONS --- */
+        .floating-social {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 2000;
+        }
+        .social-circle {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+        .social-circle.insta { background: var(--insta-gradient); }
+        .social-circle.wa { background: #25d366; }
+        .social-circle:hover { transform: scale(1.1); }
 
-        /* --- CART PANEL --- */
-        #cart-panel { position: fixed; top: 0; right: -100%; width: 400px; height: 100%; background: white; z-index: 2000; transition: 0.4s; padding: 40px; box-shadow: -10px 0 30px rgba(0,0,0,0.1); }
-        #cart-panel.open { right: 0; }
+        footer { background: var(--brand-dark); color: #777; padding: 40px 8%; text-align: center; font-size: 12px; }
+        .footer-logo { height: 40px; filter: brightness(0) invert(1); margin-bottom: 20px; opacity: 0.5; }
 
-        footer { background: var(--brand-dark); color: #888; padding: 60px 8%; text-align: center; }
+        @media (max-width: 768px) {
+            nav { display: none; }
+        }
     </style>
 </head>
 <body>
 
-<div class="top-bar">
-    GLOBAL SHIPPING AVAILABLE <span class="highlight-text">•</span> FREE DELIVERY IN <span class="highlight-text">KERALA</span>
-</div>
-
 <header>
-    <a href="#" class="logo-container">
-        <img src="Badan-Ser-Bg-Removed.png" alt="MC Logo" class="logo-img">
-        <span class="logo-text">MC CYCLER</span>
+    <a href="#" class="logo-box">
+        <img src="Badan-Ser-Bg-Removed.png" alt="MC CYCLER Logo">
+        <span>MC CYCLER</span>
     </a>
     <nav>
         <ul>
-            <li><a href="#">Road</a></li>
-            <li><a href="#">Mountain</a></li>
-            <li><a href="#">Electric</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Kerala Delivery</a></li>
+            <li><a href="#">Contact</a></li>
         </ul>
     </nav>
-    <div onclick="toggleCart()" style="cursor:pointer; position:relative;">
+    <div style="font-size: 18px; cursor: pointer;">
         <i class="fas fa-shopping-bag"></i>
-        <span id="cart-count" style="position:absolute; top:-10px; right:-10px; background:var(--brand-gold); color:white; font-size:10px; padding:2px 6px; border-radius:50%;">0</span>
     </div>
 </header>
 
 <section class="hero">
     <div>
-        <p style="letter-spacing:5px; margin-bottom:10px;">ESTABLISHED 2026</p>
-        <h1>ROYAL PERFORMANCE</h1>
+        <p style="letter-spacing: 4px; font-weight: 700; margin-bottom: 10px;">ROYAL QUALITY</p>
+        <h1>BORN TO LEAD.</h1>
     </div>
 </section>
 
-<section class="shop-container">
-    <div class="product-grid">
-        <div class="product-card">
-            <div class="delivery-badge">FREE DELIVERY IN KERALA</div>
-            <img src="https://images.pexels.com/photos/1595483/pexels-photo-1595483.jpeg" class="product-image">
-            <div style="padding:20px;">
-                <h3>AeroStream Carbon X</h3>
-                <p style="margin:10px 0; font-weight:700;">₹45,000</p>
-                <button class="btn btn-gold" onclick="addToCart('AeroStream Carbon X', 45000)">Add To Bag</button>
-            </div>
-        </div>
-        </div>
+<section class="insta-banner">
+    <i class="fab fa-instagram" style="font-size: 40px; color: #cc2366;"></i>
+    <p style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #888; margin-top: 10px;">JOIN THE MOVEMENT</p>
+    <a href="https://www.instagram.com/mc.ofcia/" target="_blank" class="insta-link">@mc.ofcia</a>
+    <p style="max-width: 500px; margin: 0 auto 25px;">Follow our journey, view the latest arrivals, and join the elite cycling community in Kerala and beyond.</p>
+    <a href="https://www.instagram.com/mc.ofcia/" target="_blank" class="insta-btn">FOLLOW US</a>
 </section>
 
-<div id="cart-panel">
-    <div style="display:flex; justify-content:space-between; margin-bottom:30px;">
-        <h2>YOUR BAG</h2>
-        <i class="fas fa-times" onclick="toggleCart()" style="cursor:pointer;"></i>
-    </div>
-    <div id="cart-items"></div>
-    <div style="margin-top:20px; border-top:1px solid #eee; padding-top:20px;">
-        <p style="color:var(--accent-green); font-size:12px; font-weight:700; margin-bottom:10px;">✓ Kerala Orders: Free Shipping Applied</p>
-        <button class="btn btn-gold">Checkout Now</button>
-    </div>
+<div class="floating-social">
+    <a href="https://wa.me/917907609416" class="social-circle wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://www.instagram.com/mc.ofcia/" class="social-circle insta" target="_blank">
+        <i class="fab fa-instagram"></i>
+    </a>
 </div>
 
 <footer>
-    <img src="Badan-Ser-Bg-Removed.png" style="height:50px; margin-bottom:20px; filter: grayscale(1) brightness(2);">
-    <p>© 2026 MC CYCLER INTERNATIONAL</p>
+    <img src="Badan-Ser-Bg-Removed.png" class="footer-logo" alt="Logo">
+    <p>© 2026 MC CYCLER INTERNATIONAL. ALL RIGHTS RESERVED.</p>
+    <p style="margin-top: 10px; color: var(--brand-gold);">FREE DELIVERY ACROSS KERALA</p>
 </footer>
-
-<script>
-    let cart = [];
-    function toggleCart() { document.getElementById('cart-panel').classList.toggle('open'); }
-    function addToCart(name, price) {
-        cart.push({name, price});
-        document.getElementById('cart-count').innerText = cart.length;
-        alert(name + " added to bag!");
-    }
-</script>
 
 </body>
 </html>
