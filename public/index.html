@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MC CyCler | Premium Cycles & Bikes</title>
+    <meta name="description" content="Premium cycles and bikes store in Malappuram. Mountain bikes, city bikes, kids bikes and accessories.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Cloudinary Upload Widget CSS -->
+    <link href="https://unpkg.com/cloudinary-video-player/dist/cld-video-player.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #f5c400;
+            --secondary: #000;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --success: #28a745;
+            --danger: #dc3545;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--secondary);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo h1 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        /* Navigation */
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .profile-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .profile-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 85vh;
+            min-height: 500px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Products Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h3 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filter */
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 10px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 5px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .search-box {
+            padding: 10px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 250px;
+            transition: border-color 0.3s;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1da851;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            width: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 25px;
+            z-index: 1001;
+            display: none;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .admin-panel.active {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-admin {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Image Upload Styles */
+        .image-upload-container {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .image-upload-container:hover {
+            border-color: var(--primary);
+        }
+
+        .image-preview {
+            margin-top: 15px;
+            display: none;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .upload-progress {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        /* Cart Notification */
+        .cart-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            display: none;
+            z-index: 1002;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Product Management */
+        .product-management {
+            margin-top: 30px;
+        }
+
+        .product-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-list-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p {
+            color: #adb5bd;
+            margin-bottom: 10px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .payment-icon {
+            background: white;
+            color: var(--secondary);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #343a40;
+            color: #adb5bd;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--secondary);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .admin-panel {
+                width: 90%;
+                right: 5%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-bicycle logo-icon"></i>
+                <h1>MC CyCler</h1>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#products">Products</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <button class="profile-btn" id="adminToggle">
+                    <i class="fas fa-user-cog"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Ride Premium, Ride Confident</h2>
+                <p>Explore our premium collection of mountain bikes, city cruisers, kids cycles, and accessories. Quality meets adventure at MC CyCler.</p>
+                <a href="#products" class="cta-button">Shop Collection</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="section" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h3>Our Collection</h3>
+                <p>Handpicked premium cycles for every rider. Find your perfect match.</p>
+            </div>
+
+            <div class="filter-container">
+                <div class="filter-group">
+                    <select class="filter-select" id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="mountain">Mountain Bikes</option>
+                        <option value="city">City Bikes</option>
+                        <option value="kids">Kids Bikes</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                    <select class="filter-select" id="priceFilter">
+                        <option value="all">All Prices</option>
+                        <option value="0-5000">Under ₹5,000</option>
+                        <option value="5000-15000">₹5,000 - ₹15,000</option>
+                        <option value="15000+">Above ₹15,000</option>
+                    </select>
+                </div>
+                <input type="text" class="search-box" id="searchBox" placeholder="Search products...">
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="section-title">
+                <h3>About MC CyCler</h3>
+                <p>Your trusted cycle shop in Malappuram since 2010</p>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    At MC CyCler, we're passionate about cycling. We offer premium quality bikes, expert maintenance services, 
+                    and everything you need for your cycling journey. Whether you're a professional rider or just starting out, 
+                    we have the perfect bike for you.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px;">
+                    <div style="text-align: center;">
+                        <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+                        <h4 style="margin-bottom: 10px;">1 Year Warranty</h4>
+                        <p>On all products</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <i class="fas fa-tools" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+                        <h4 style="margin-bottom: 10px;">Free Service</h4>
+                        <p>First 3 months</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <i class="fas fa-truck" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+                        <h4 style="margin-bottom: 10px;">Free Delivery</h4>
+                        <p>Within Malappuram</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h3>Admin Panel</h3>
+            <button class="close-admin" id="closeAdmin">&times;</button>
+        </div>
+        
+        <div id="loginSection">
+            <div class="form-group">
+                <input type="password" id="adminPassword" class="form-control" placeholder="Enter admin password">
+            </div>
+            <button class="btn btn-primary" id="loginBtn" style="width: 100%;">Login</button>
+        </div>
+        
+        <div id="adminControls" style="display: none;">
+            <h4>Add New Product</h4>
+            <div class="form-group">
+                <input type="text" id="productName" class="form-control" placeholder="Product name" required>
+            </div>
+            <div class="form-group">
+                <input type="number" id="productPrice" class="form-control" placeholder="Price (₹)" required>
+            </div>
+            <div class="form-group">
+                <select id="productCategory" class="form-control" required>
+                    <option value="mountain">Mountain Bike</option>
+                    <option value="city">City Bike</option>
+                    <option value="kids">Kids Bike</option>
+                    <option value="accessories">Accessories</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <textarea id="productDescription" class="form-control" placeholder="Product description" rows="3" required></textarea>
+            </div>
+            
+            <!-- Image Upload Section -->
+            <div class="form-group">
+                <label style="display: block; margin-bottom: 10px; font-weight: 600;">Product Image</label>
+                <div class="image-upload-container" id="imageUploadContainer">
+                    <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: #6c757d; margin-bottom: 10px;"></i>
+                    <p>Click to upload product image</p>
+                    <p style="font-size: 0.9rem; color: #6c757d;">JPG, PNG up to 5MB</p>
+                </div>
+                <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                <input type="hidden" id="productImageUrl">
+                
+                <div class="image-preview" id="imagePreview">
+                    <img id="previewImage" src="" alt="Preview">
+                    <button type="button" class="btn btn-danger" onclick="removeImage()" style="margin-top: 10px;">
+                        <i class="fas fa-trash"></i> Remove Image
+                    </button>
+                </div>
+                
+                <div class="upload-progress" id="uploadProgress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p style="margin-top: 5px; font-size: 0.9rem;" id="progressText">Uploading...</p>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary" id="addProductBtn" style="width: 100%;" disabled>
+                <i class="fas fa-plus"></i> Add Product
+            </button>
+            
+            <!-- Product Management Section -->
+            <div class="product-management" id="productManagement">
+                <h4 style="margin-top: 30px; margin-bottom: 15px;">Manage Products</h4>
+                <div id="productList">
+                    <!-- Products will be listed here -->
+                </div>
+            </div>
+            
+            <button class="btn" id="logoutBtn" style="width: 100%; margin-top: 20px; background: #e9ecef;">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </div>
+
+    <!-- Cart Notification -->
+    <div class="cart-notification" id="cartNotification">
+        Product added to cart!
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>MC CyCler</h4>
+                    <p>Premium cycles and accessories shop in Malappuram, Kerala.</p>
+                    <p>📍 Near Town Center, Malappuram</p>
+                    <p>📞 7907609416</p>
+                    <p>✉️ info@mccycler.com</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Business Hours</h4>
+                    <p>Monday - Saturday: 9:00 AM - 8:00 PM</p>
+                    <p>Sunday: 10:00 AM - 6:00 PM</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Payment Methods</h4>
+                    <div class="payment-methods">
+                        <span class="payment-icon">GPay</span>
+                        <span class="payment-icon">PhonePe</span>
+                        <span class="payment-icon">Paytm</span>
+                        <span class="payment-icon">Cash</span>
+                        <span class="payment-icon">Card</span>
+                    </div>
+                    <p style="margin-top: 20px;">WhatsApp orders: 7907609416</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 MC CyCler. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cloudinary Upload Widget Script -->
+    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+    
+    <script>
+        // Cloudinary Configuration
+        const cloudName = 'dx86o1uqq';
+        const apiKey = '723982743441134';
+        // IMPORTANT: Never expose API secret in frontend code!
+        // In production, you should use:
+        // 1. Cloudinary unsigned uploads with upload preset
+        // 2. Backend server to generate signatures
+        
+        // For demo purposes, we'll use unsigned uploads
+        // You need to create an upload preset in Cloudinary Dashboard:
+        // 1. Go to Settings > Upload
+        // 2. Create unsigned upload preset
+        // 3. Enable unsigned uploading
+        const uploadPreset = 'mc_cyclet'; // Replace with your upload preset name
+
+        // Sample products data - Load from localStorage
+        let products = JSON.parse(localStorage.getItem('mcCyclerProducts')) || [
+            {
+                id: 1,
+                name: "Mountain Pro X1",
+                price: 18999,
+                category: "mountain",
+                image: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&w=600",
+                description: "Professional mountain bike with 21-speed gears"
+            },
+            {
+                id: 2,
+                name: "City Cruiser",
+                price: 12499,
+                category: "city",
+                image: "https://images.pexels.com/photos/1476880/pexels-photo-1476880.jpeg?auto=compress&cs=tinysrgb&w=600",
+                description: "Comfortable city bike for daily commute"
+            },
+            {
+                id: 3,
+                name: "Kids Explorer",
+                price: 7999,
+                category: "kids",
+                image: "https://images.pexels.com/photos/248547/pexels-photo-248547.jpeg?auto=compress&cs=tinysrgb&w=600",
+                description: "Safe and fun bike for kids with training wheels"
+            }
+        ];
+
+        // Save products to localStorage
+        function saveProducts() {
+            localStorage.setItem('mcCyclerProducts', JSON.stringify(products));
+        }
+
+        // DOM Elements
+        const productsGrid = document.getElementById('productsGrid');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const priceFilter = document.getElementById('priceFilter');
+        const searchBox = document.getElementById('searchBox');
+        const adminPanel = document.getElementById('adminPanel');
+        const adminToggle = document.getElementById('adminToggle');
+        const closeAdmin = document.getElementById('closeAdmin');
+        const loginBtn = document.getElementById('loginBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const addProductBtn = document.getElementById('addProductBtn');
+        const loginSection = document.getElementById('loginSection');
+        const adminControls = document.getElementById('adminControls');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        const cartNotification = document.getElementById('cartNotification');
+        const imageUploadContainer = document.getElementById('imageUploadContainer');
+        const imageInput = document.getElementById('imageInput');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewImage = document.getElementById('previewImage');
+        const productImageUrl = document.getElementById('productImageUrl');
+        const uploadProgress = document.getElementById('uploadProgress');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        const productList = document.getElementById('productList');
+
+        // Initialize Cloudinary Upload Widget
+        let cloudinaryWidget;
+
+        function initCloudinaryWidget() {
+            cloudinaryWidget = cloudinary.createUploadWidget(
+                {
+                    cloudName: cloudName,
+                    uploadPreset: uploadPreset,
+                    sources: ['local', 'url', 'camera'],
+                    multiple: false,
+                    maxFileSize: 5000000, // 5MB
+                    clientAllowedFormats: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
+                    maxImageWidth: 2000,
+                    maxImageHeight: 2000,
+                    cropping: true,
+                    showSkipCropButton: false,
+                    croppingAspectRatio: 1.5,
+                    croppingDefaultSelectionRatio: 0.9,
+                    styles: {
+                        palette: {
+                            window: '#FFFFFF',
+                            windowBorder: '#90A0B3',
+                            tabIcon: '#0078FF',
+                            menuIcons: '#5A616A',
+                            textDark: '#000000',
+                            textLight: '#FFFFFF',
+                            link: '#0078FF',
+                            action: '#FF620C',
+                            inactiveTabIcon: '#0E2F5A',
+                            error: '#F44235',
+                            inProgress: '#0078FF',
+                            complete: '#20B832',
+                            sourceBg: '#E4EBF1'
+                        }
+                    }
+                },
+                (error, result) => {
+                    if (!error && result && result.event === 'success') {
+                        handleUploadSuccess(result.info);
+                    } else if (error) {
+                        showNotification('Upload failed: ' + error.message, 'error');
+                    }
+                }
+            );
+        }
+
+        // Handle successful upload
+        function handleUploadSuccess(info) {
+            const imageUrl = info.secure_url;
+            productImageUrl.value = imageUrl;
+            previewImage.src = imageUrl;
+            imagePreview.style.display = 'block';
+            addProductBtn.disabled = false;
+            uploadProgress.style.display = 'none';
+            showNotification('Image uploaded successfully!', 'success');
+        }
+
+        // Initialize products display
+        function displayProducts(productsArray) {
+            productsGrid.innerHTML = '';
+            
+            if (productsArray.length === 0) {
+                productsGrid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                        <i class="fas fa-search" style="font-size: 3rem; color: #6c757d; margin-bottom: 20px;"></i>
+                        <h3>No products found</h3>
+                        <p>Try adjusting your filters or search term</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            productsArray.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'">
+                    <div class="product-info">
+                        <div class="product-category">${getCategoryName(product.category)}</div>
+                        <h3 class="product-title">${product.name}</h3>
+                        <p style="color: #666; margin-bottom: 15px; font-size: 0.95rem;">${product.description}</p>
+                        <div class="product-price">₹${product.price.toLocaleString()}</div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" onclick="addToCart(${product.id})">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                            <button class="btn btn-whatsapp" onclick="orderOnWhatsApp('${product.name}', ${product.price})">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </button>
+                        </div>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Display product list in admin panel
+        function displayProductList() {
+            productList.innerHTML = '';
+            
+            if (products.length === 0) {
+                productList.innerHTML = '<p>No products added yet.</p>';
+                return;
+            }
+            
+            products.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-list-item';
+                productItem.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <img src="${product.image}" alt="${product.name}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
+                        <div>
+                            <strong>${product.name}</strong><br>
+                            <small>₹${product.price} • ${getCategoryName(product.category)}</small>
+                        </div>
+                    </div>
+                    <button class="btn btn-danger" onclick="deleteProduct(${product.id})" style="padding: 5px 10px;">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                productList.appendChild(productItem);
+            });
+        }
+
+        // Filter products
+        function filterProducts() {
+            const category = categoryFilter.value;
+            const priceRange = priceFilter.value;
+            const searchTerm = searchBox.value.toLowerCase();
+            
+            let filteredProducts = products;
+            
+            // Filter by category
+            if (category !== 'all') {
+                filteredProducts = filteredProducts.filter(product => product.category === category);
+            }
+            
+            // Filter by price
+            if (priceRange !== 'all') {
+                if (priceRange === '0-5000') {
+                    filteredProducts = filteredProducts.filter(product => product.price <= 5000);
+                } else if (priceRange === '5000-15000') {
+                    filteredProducts = filteredProducts.filter(product => product.price >= 5000 && product.price <= 15000);
+                } else if (priceRange === '15000+') {
+                    filteredProducts = filteredProducts.filter(product => product.price > 15000);
+                }
+            }
+            
+            // Filter by search term
+            if (searchTerm) {
+                filteredProducts = filteredProducts.filter(product => 
+                    product.name.toLowerCase().includes(searchTerm) || 
+                    product.description.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            displayProducts(filteredProducts);
+        }
+
+        // Get category display name
+        function getCategoryName(category) {
+            const categories = {
+                'mountain': 'Mountain Bike',
+                'city': 'City Bike',
+                'kids': 'Kids Bike',
+                'accessories': 'Accessories'
+            };
+            return categories[category] || category;
+        }
+
+        // Admin functions
+        function toggleAdminPanel() {
+            adminPanel.classList.toggle('active');
+            if (adminPanel.classList.contains('active')) {
+                displayProductList();
+            }
+        }
+
+        function login() {
+            const password = document.getElementById('adminPassword').value;
+            
+            // In a real application, this would be handled by a secure backend
+            if (password === 'admin123') {
+                loginSection.style.display = 'none';
+                adminControls.style.display = 'block';
+                document.getElementById('adminPassword').value = '';
+                initCloudinaryWidget();
+            } else {
+                showNotification('Incorrect password!', 'error');
+            }
+        }
+
+        function logout() {
+            loginSection.style.display = 'block';
+            adminControls.style.display = 'none';
+            adminPanel.classList.remove('active');
+            resetForm();
+        }
+
+        function addProduct() {
+            const name = document.getElementById('productName').value;
+            const price = parseInt(document.getElementById('productPrice').value);
+            const category = document.getElementById('productCategory').value;
+            const image = productImageUrl.value;
+            const description = document.getElementById('productDescription').value;
+            
+            if (!name || !price || !image || !description) {
+                showNotification('Please fill in all fields and upload an image', 'error');
+                return;
+            }
+            
+            if (price <= 0) {
+                showNotification('Please enter a valid price', 'error');
+                return;
+            }
+            
+            const newProduct = {
+                id: Date.now(), // Generate unique ID
+                name,
+                price,
+                category,
+                image,
+                description
+            };
+            
+            products.push(newProduct);
+            saveProducts();
+            displayProducts(products);
+            displayProductList();
+            
+            // Clear form
+            resetForm();
+            
+            showNotification('Product added successfully!', 'success');
+        }
+
+        function deleteProduct(productId) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                products = products.filter(product => product.id !== productId);
+                saveProducts();
+                displayProducts(products);
+                displayProductList();
+                filterProducts();
+                showNotification('Product deleted successfully!', 'success');
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('productName').value = '';
+            document.getElementById('productPrice').value = '';
+            document.getElementById('productDescription').value = '';
+            productImageUrl.value = '';
+            previewImage.src = '';
+            imagePreview.style.display = 'none';
+            addProductBtn.disabled = true;
+        }
+
+        function removeImage() {
+            productImageUrl.value = '';
+            previewImage.src = '';
+            imagePreview.style.display = 'none';
+            addProductBtn.disabled = true;
+        }
+
+        // Cart functions
+        function addToCart(productId) {
+            showNotification('Product added to cart!', 'success');
+            // In a real app, you would add to cart logic here
+        }
+
+        function showNotification(message, type = 'success') {
+            cartNotification.textContent = message;
+            cartNotification.style.background = type === 'success' ? 'var(--primary)' : 'var(--danger)';
+            cartNotification.style.color = type === 'success' ? 'var(--secondary)' : 'white';
+            cartNotification.style.display = 'block';
+            setTimeout(() => {
+                cartNotification.style.display = 'none';
+            }, 3000);
+        }
+
+        // WhatsApp order function
+        function orderOnWhatsApp(productName, productPrice) {
+            const phoneNumber = '917907609416';
+            const message = `Hello, I'd like to order: ${productName} (₹${productPrice.toLocaleString()}) from MC CyCler.`;
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // Event Listeners
+        categoryFilter.addEventListener('change', filterProducts);
+        priceFilter.addEventListener('change', filterProducts);
+        searchBox.addEventListener('input', filterProducts);
+        adminToggle.addEventListener('click', toggleAdminPanel);
+        closeAdmin.addEventListener('click', () => adminPanel.classList.remove('active'));
+        loginBtn.addEventListener('click', login);
+        logoutBtn.addEventListener('click', logout);
+        addProductBtn.addEventListener('click', addProduct);
+        mobileMenuBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
+
+        // Image upload event listeners
+        imageUploadContainer.addEventListener('click', () => {
+            cloudinaryWidget.open();
+        });
+
+        // Close admin panel when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!adminPanel.contains(e.target) && !adminToggle.contains(e.target)) {
+                adminPanel.classList.remove('active');
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && 
+                !navLinks.contains(e.target) && 
+                !mobileMenuBtn.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Form validation
+        document.getElementById('productName').addEventListener('input', validateForm);
+        document.getElementById('productPrice').addEventListener('input', validateForm);
+        document.getElementById('productDescription').addEventListener('input', validateForm);
+
+        function validateForm() {
+            const name = document.getElementById('productName').value;
+            const price = document.getElementById('productPrice').value;
+            const description = document.getElementById('productDescription').value;
+            const image = productImageUrl.value;
+            
+            addProductBtn.disabled = !(name && price && description && image);
+        }
+
+        // Initialize
+        displayProducts(products);
+
+        // Enter key for login
+        document.getElementById('adminPassword').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                login();
+            }
+        });
+
+        // Security Note Display
+        console.log(`
+        ===========================================
+        SECURITY NOTE FOR MC CYLER ADMINISTRATOR:
+        ===========================================
+        
+        1. NEVER expose your Cloudinary API Secret in frontend code
+        2. The current implementation uses unsigned uploads with an upload preset
+        
+        SETUP INSTRUCTIONS:
+        
+        1. Go to Cloudinary Dashboard: https://cloudinary.com/console
+        2. Navigate to Settings > Upload
+        3. Create a new "Upload Preset" with these settings:
+           - Signing Mode: Unsigned
+           - Folder: mc-cyler/products
+           - Allowed Formats: Image
+           - Max File Size: 10MB
+        
+        4. Replace 'mc_cyclet' in the code with your actual upload preset name
+        
+        FOR PRODUCTION:
+        
+        For better security, implement a backend server that:
+        1. Generates secure signatures for uploads
+        2. Validates uploads server-side
+        3. Stores products in a database
+        
+        Current setup is suitable for demo purposes only.
+        ===========================================
+        `);
+    </script>
+</body>
+</html>
