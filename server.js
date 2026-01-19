@@ -1,5 +1,6 @@
 // server.js
 const express = require('express');
+const axios = require('axios');
 const path = require('path');
 const cloudinary = require('cloudinary').v2;
 
@@ -36,5 +37,32 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+const serverType = process.env.RENDER_EXTERNAL_URL
+  ? 'RENDER'
+  : process.env.KOYEB_PUBLIC_DOMAIN
+  ? 'KOYEB'
+  : null;
+
+const uptimeUrl = serverType === 'RENDER'
+  ? process.env.RENDER_EXTERNAL_URL
+  : serverType === 'KOYEB'
+  ? 'https://' + process.env.KOYEB_PUBLIC_DOMAIN
+  : null;
+
+setInterval(() => {
+  if (!uptimeUrl) return;
+
+  axios.get(uptimeUrl, {
+    timeout: 5000,
+    headers: { 'User-Agent': 'Uptime-Bot' },
+    validateStatus: status => status < 500
+  }).then(res => {
+    console.log(`[${new Date().toISOString()}] Uptime Ping Success: ${res.status}`);
+  }).catch(err => {
+    console.log(`[${new Date().toISOString()}] Uptime Ping Failed: ${err.message}`);
+  });
+}, 5 * 60 * 1000);
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
